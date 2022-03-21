@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SW</title>
+</head>
+
+<body>
+    <button onclick="appendImage()">Append image</button>
+    <script>
+        console.log("Init script");
+        function appendImage() {
+            const image = new Image()
+            image.src = '/' + Math.random();
+            document.body.appendChild(image);
+        }
+
+        window.onload = () => {
+            console.log("Got onload");
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('SW registered!', reg))
+                .catch(err => console.log('Boo!', err));
+        }
+    </script>
+</body>
+
+</html>
